@@ -5,7 +5,8 @@ Background: Define URL
     Given url 'https://api.realworld.io/api/'
 
     
-    Scenario: Get all tags
+
+   Scenario: Get all tags
         Given path 'tags'
         When method Get
         Then status 200
