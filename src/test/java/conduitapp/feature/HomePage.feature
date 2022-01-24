@@ -2,7 +2,7 @@
 Feature: Tests for the home page
 
 Background: Define URL
-    Given url 'https://api.realworld.io/api/'
+    Given url apiURL
 
     
 
@@ -16,6 +16,7 @@ Background: Define URL
 
         # Verify that certain value should not be there
         And match response.tags !contains 'truck'
+        And match response.tags contains any ['fish', 'dog', 'introduction']
 
         # Verify that the values of the  "tags" is an array
         And match response.tags =="#array"
@@ -31,9 +32,11 @@ Background: Define URL
         When method Get
         Then status 200
 
-        # Verify that the limit of the array is 10
-        And match response.articles == '#[3]'
+         # Verify that the limit of the array is 10
+        # And match response.articles == '#[3]'
 
-         # Verify that article count is: 3
-         And match response.articlesCount == 3
-       
+        #  # Verify that article count is: 3
+        #  And match response.articlesCount == 3
+        And match response.articlesCount != 3
+        # And match response == { "articles": "#array", "articlesCount": 3}
+    
